@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
@@ -7,8 +9,7 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
 
-// remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
-const uri = 'MONGODB_URI_HIDDEN';
+const uri = process.env.MONGODB_URI;
 
 const options = {
   useNewUrlParser: true,
@@ -38,7 +39,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-let port = process.env.PORT || 8010;
+let port = 10000;
 
 // les routes
 const prefix = '/api';
